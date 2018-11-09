@@ -14,13 +14,12 @@ io.on('connection', (socket)=>{
     console.log("Clinet disconnected ");
   });
 
-  socket.on('createMessage',(data)=>{
-    console.log(data);
-  });
-  socket.emit('newMessage',{
-    from: "intizarahmad", 
-    text: "Hi let catchup", 
-    createdAt: "12:30 AM"
+  socket.on('createMessage',(message)=>{
+    io.emit('newMessage',{
+      from: message.from, 
+      text: message.text, 
+      createdAt: new Date()
+    });
   });
 });
 
